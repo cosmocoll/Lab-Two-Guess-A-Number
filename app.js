@@ -1,4 +1,4 @@
-const getUserNumber = document.getElementById('userNumber');
+const getButton = document.getElementById('myCoolButton');
 
 const getAttempts = document.getElementById('attempts');
 
@@ -6,21 +6,58 @@ const getGuess = document.getElementById('guess');
 
 const getResults = document.getElementById('results');
 
-let totalAttempts = 4;
+const debug = document.getElementById('lazy');
+
+const totalAttempts = 4;
+
+let currentAttempts = 1;
 
 function getRandomNumber () {
-    const randomNumber = Math.floor(Math.random() * 20);
+    const randomNumber = Math.floor(Math.random() * 20)+1;
     return randomNumber;
 };
 
-getUserNumber.addEventListener('click', () => {
-    totalAttempts--;
+let storeRandomNumber = getRandomNumber();
 
-    let storeRandomNumber = getRandomNumber();
+//debug.textContent = "Random Number Is: " + storeRandomNumber + "  Your Choices: ";
 
-    document.write('good news! ' + storeRandomNumber);
+if (currentAttempts) {
+    getButton.addEventListener('click', () => {
+
+        let getNumber = document.getElementById('userNumber').value;
+
+        if (currentAttempts > totalAttempts) {
+            getGuess.textContent = "That's all the guesses you get!";
+            document.getElementById('buttonBox').style.display='none';
+        }
+        else{
+
+            //debug.textContent += " " + getNumber;
+            
+            if (getNumber == storeRandomNumber) {
+                getResults.textContent = "Winner!";
+                //hide button
+            } 
+            else {
+
+                getResults.textContent = "Try Again";
+
+                if (getNumber > storeRandomNumber) {
+                getGuess.textContent = "You guessed too high!";
+                }
+
+                else { 
+                getGuess.textContent = "You guessed too low!";
+                }
+
+                getAttempts.textContent = "You've made " + currentAttempts + " of " + totalAttempts;
+
+            };
+
+            currentAttempts++;
+        };
+    });
+}
+else {
     
-    if (getUserNumber === storeRandomNumber) {
-        document.write('good news! ' + storeRandomNumber);
-    } ;
-});
+}
