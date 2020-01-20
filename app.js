@@ -8,9 +8,13 @@ const getResults = document.getElementById('results');
 
 const debug = document.getElementById('lazy');
 
+const getHighscore = document.getElementById('highscore');
+
 const totalAttempts = 4;
 
 let currentAttempts = 1;
+
+let currentHighscore = 0;
 
 function getRandomNumber () {
     const randomNumber = Math.floor(Math.random() * 20)+1;
@@ -35,8 +39,14 @@ if (currentAttempts) {
             //debug.textContent += " " + getNumber;
             
             if (getNumber == storeRandomNumber) {
-                getResults.textContent = "Winner!";
-                //hide button
+                getResults.textContent = "winner!";
+                document.getElementById('buttonBox').style.display='none';
+                getGuess.textContent = "Congratulations, you are the";
+                
+                if (currentHighscore < currentAttempts) {
+                    getHighscore.textContent = "High (or low) score: " + currentHighscore + "!";
+                };
+
             } 
             else {
 
@@ -50,7 +60,7 @@ if (currentAttempts) {
                 getGuess.textContent = "You guessed too low!";
                 }
 
-                getAttempts.textContent = "You've made " + currentAttempts + " of " + totalAttempts;
+                getAttempts.textContent = "You've made " + currentAttempts + " of " + totalAttempts + " guesses";
 
             };
 

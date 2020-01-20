@@ -1,0 +1,14 @@
+* {
+    text-align: center;
+}
+
+h1 {
+    font-weight: 500;
+    padding-top: 50px;
+    margin: 15px;
+    text-decoration: underline rgb(36, 110, 180);
+}
+
+p {
+    padding: 25px 100px 25px 100px;
+}
